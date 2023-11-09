@@ -17,7 +17,7 @@ def youtube_search(query_term, max_results):
 		q=query_term,
 		part='id,snippet',
 		maxResults=max_results,
-	).excute()
+	).execute()
 
 	return search_response
 

@@ -19,7 +19,16 @@ def youtube_search(query_term, max_results):
 		maxResults=max_results,
 	).execute()
 
-	return search_response
+	#added this to make it a little more readable
+	videos = []
+
+	for search_result in search_response.get('items', []):
+		if search_result['id']['kind'] == 'youtube#video':
+			videos.append('%s (%s)' % (search_result['snippet']['title'], 
+										search_result['id']['videoId']))
+	
+	print('Videos:\n', '\n'.join(videos), '\n')
+	return search_response.get('items', [])
 
 
 if __name__ == "__main__":
